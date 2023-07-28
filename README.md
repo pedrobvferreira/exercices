@@ -5,3 +5,6 @@
 ---------------
 ## 2) Smallest positive number
 * Given an unsorted array arr[] with both positive and negative elements, the task is to find the smallest positive number missing from the array.
+---------------
+## 3) BinaryGap
+* Find longest sequence of zeros in binary representation of an integer.
