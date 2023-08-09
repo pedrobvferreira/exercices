@@ -47,27 +47,7 @@ public class LexicograficOrder {
 		newIdentifiers.addAll(oldIdentifiers);
 		return newIdentifiers;
 	}
-	
-//	public static List<String> stringCompare(String[] documentList) {
-//		List<String> strWithValues = new ArrayList<>();
-//		List<String> strWithoutValues = new ArrayList<>();
-//		for(String value: Arrays.asList(documentList)) {
-//			String substringValue = value.substring(0, value.indexOf(" "));
-//			if(substringValue.matches(regex)){
-//				System.out.println("The String contains an int");  
-//				strWithValues.add(value);
-//			}else {
-//				System.out.println("The String dont contains an int");  
-//				strWithoutValues.add(value);
-//			}
-//		}
-//		strWithValues.stream().sorted().collect(Collectors.toList());
-//		strWithoutValues.stream().sorted().collect(Collectors.toList());
-//		
-//		strWithValues.addAll(strWithoutValues);
-//		return strWithValues;
-//	}
-//	
+
 //	private static List<String> orderDocuments(String[] documentList){
 //		for (int i = 0; i < documentList.length - 1; i++) {
 //            for (int j = i + 1; j < documentList.length; j++) {
@@ -91,9 +71,7 @@ public class LexicograficOrder {
 //    }
 
     public static void main(String[] args) {
-//        String[] documentList = {"zld 93 12", "fp alpha xls", "125 echo doc", "17g 122252", "563 alpha omx", "120 echo doc"};
     	String[] documentList = {"zld 93 12", "fp alpha xls", "125 echo doc", "17g 122252", "563 alpha omx", "120 echo doc"};
-//        System.out.println(orderDocuments(documentList));
         System.out.println(orderJavaStream(documentList));
     }
 }
