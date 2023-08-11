@@ -8,45 +8,45 @@ import java.util.stream.Collectors;
 
 public class LexicograficOrder {
     
-    final static String regex = ".*[0-9].*";
-	
-    static Comparator<String> comparator = new Comparator<String>() {
-    	@Override
-   	public int compare(String i1, String i2) {
-            //makes lexicographically compare strings
-            int value = i1.compareTo(i2);
-            if (value == 0) {
-                // if comparison of string ties, the ID should be used as a backup sort
-                int subValue1 =  Integer.parseInt(i1.substring(0, i1.indexOf(" ")));
-                int subValue2 =  Integer.parseInt(i2.substring(0, i2.indexOf(" ")));
-		        	
-                return subValue1 - subValue2;
-            } else {
-                // if string is lexicographically bigger or smaller, we sorted the string
-                return value;
-            }
-    	}
-    };
+	final static String regex = ".*[0-9].*";
+
+	static Comparator<String> comparator = new Comparator<String>() {
+		@Override
+		public int compare(String i1, String i2) {
+			// makes lexicographically compare strings
+			int value = i1.compareTo(i2);
+			if (value == 0) {
+				// if comparison of string ties, the ID should be used as a backup sort
+				int subValue1 = Integer.parseInt(i1.substring(0, i1.indexOf(" ")));
+				int subValue2 = Integer.parseInt(i2.substring(0, i2.indexOf(" ")));
+
+				return subValue1 - subValue2;
+			} else {
+				// if string is lexicographically bigger or smaller, we sorted the string
+				return value;
+			}
+		}
+	};
 	
     public static List<String> orderJavaStream(String[] documentList) {
-   	Locale ENGLISH = Locale.forLanguageTag("en");
+		Locale ENGLISH = Locale.forLanguageTag("en");
 		
-   	//Separate newIdentifiers
-   	List<String> newIdentifiers = Arrays.asList(documentList).stream()
-   	   	.filter(f -> f.substring(0, f.indexOf(" ")).matches(regex)
-   	   	&& f.equals(f.toLowerCase(ENGLISH)))
-   	   	.sorted(comparator)
-   	   	.collect(Collectors.toList());
+		//Separate newIdentifiers
+		List<String> newIdentifiers = Arrays.asList(documentList).stream()
+				.filter(f -> f.substring(0, f.indexOf(" ")).matches(regex)
+						&& f.equals(f.toLowerCase(ENGLISH)))
+				.sorted(comparator)
+				.collect(Collectors.toList());
 		
-   	//Separate oldIdentifiers
-   	List<String> oldIdentifiers = Arrays.asList(documentList).stream()
-   	   	.filter(f -> !f.substring(0, f.indexOf(" ")).matches(regex)
-   	   	&& f.equals(f.toLowerCase(ENGLISH)))
-   	   	.collect(Collectors.toList());
+		//Separate oldIdentifiers
+		List<String> oldIdentifiers = Arrays.asList(documentList).stream()
+				.filter(f -> !f.substring(0, f.indexOf(" ")).matches(regex)
+						&& f.equals(f.toLowerCase(ENGLISH)))
+				.collect(Collectors.toList());
 		
 		newIdentifiers.addAll(oldIdentifiers);
 		return newIdentifiers;
-    }
+	}
 
     public static void main(String[] args) {
     	String[] documentList = {"zld 93 12", "fp alpha xls", "125 echo doc", "17g 122252", "563 alpha omx", "120 echo doc"};
