@@ -8,13 +8,15 @@ import java.util.stream.Collectors;
 
 public class LexicograficOrder {
     
-	final static String regex = ".*[0-9].*";
+	final static String regex = "[0-9]+";
 
 	static Comparator<String> comparator = new Comparator<String>() {
 		@Override
 		public int compare(String i1, String i2) {
+			String metadata1 = i1.substring(i1.indexOf(" "), i1.length());
+			String metadata2 = i2.substring(i1.indexOf(" "), i2.length());
 			// makes lexicographically compare strings
-			int value = i1.compareTo(i2);
+			int value = metadata1.compareTo(metadata2);
 			if (value == 0) {
 				// if comparison of string ties, the ID should be used as a backup sort
 				int subValue1 = Integer.parseInt(i1.substring(0, i1.indexOf(" ")));
